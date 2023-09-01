@@ -1,18 +1,22 @@
-name: Hello World Workflow
+name: Hello
 
 on:
-   push:
-      branches:
-          -main
-   pull_request:
-      branches:
-         -main
-   workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions: read-all
 
 jobs:
-  hello:
-     runs-on: ubuntu-latest
-     steps:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      deployments: write
+      contents: read
+      actions: read
+   steps:
         - uses: action/checkout@v3
         - name: hello world
           run: echo "Hello world"
